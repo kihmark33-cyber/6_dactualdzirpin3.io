@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Головна{% endblock %}
+{% block content %}
+<h2 class="page-title">Останні пости</h2>
+
+<!-- Пошук -->
+<form method="GET" action="{{ url_for('search') }}" class="search-bar">
+    <input type="text" name="q" placeholder="🔍 Пошук за назвою або хештегом" value="{{ query if query }}">
+    <button type="submit" class="btn search-btn">Шукати</button>
+</form>
+
+<!-- Сітка постів -->
+<div class="posts-grid">
+{% for post in posts %}
+    <div class="post-card">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-text">{{ post.description }}</p>
+        <small class="post-meta">👤 Автор: {{ post.author_name }}</small><br>
+        <small class="post-meta">💬 {{ post.comments_count }} | 👁 {{ post.views }}</small><br>
+        <small class="post-meta">🏷
+            <a href="{{ url_for('search', q=post.tag) }}" class="tag-link">{{ post.tag }}</a>
+        </small>
+        <div class="post-actions">
+            <a href="{{ url_for('post_detail', id=post.id) }}" class="btn detail-btn">Детальніше</a>
+            <form action="{{ url_for('add_to_favorite', post_id=post.id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn fav-btn">⭐ У Favorite</button>
+            </form>
+        </div>
+    </div>
+{% else %}
+    <p class="no-posts">Поки що немає постів.</p>
+{% endfor %}
+</div>
+
+<!-- Кнопка створення поста -->
+<div class="create-post">
+    <a href="{{ url_for('create_post') }}" class="btn create-btn">➕ Створити пост</a>
+</div>
+{% endblock %}

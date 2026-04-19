@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизація</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .auth-box {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    .auth-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .auth-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+    .auth-box input:focus {
+      border-color: #0072ff;
+      outline: none;
+    }
+    .auth-box button {
+      width: 100%;
+      padding: 12px;
+      background: #0072ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .auth-box button:hover {
+      background: #00c6ff;
+    }
+    .auth-box p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .auth-box a {
+      color: #0072ff;
+      text-decoration: none;
+    }
+    .auth-box a:hover {
+      text-decoration: underline;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-box">
+    <h2>Увійти</h2>
+    <form method="POST" action="/login">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Пароль" required>
+      <button type="submit">Увійти</button>
+    </form>
+    <p>Немає акаунта? <a href="/register">Зареєструватися</a></p>
+  </div>
+</body>
+</html>

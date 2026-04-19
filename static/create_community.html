@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Створити спільноту</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .community-box {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 420px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    .community-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+    .community-box input, .community-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+    .community-box input:focus, .community-box textarea:focus {
+      border-color: #185a9d;
+      outline: none;
+    }
+    .community-box .radio-group {
+      margin: 15px 0;
+    }
+    .community-box label {
+      display: block;
+      margin: 5px 0;
+      font-size: 14px;
+      color: #444;
+    }
+    .community-box button {
+      width: 100%;
+      padding: 12px;
+      background: #185a9d;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .community-box button:hover {
+      background: #43cea2;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="community-box">
+    <h2>Створити спільноту</h2>
+    <form method="POST" action="/create_community">
+      <input type="text" name="name" placeholder="Назва спільноти" required>
+      <textarea name="description" placeholder="Опис спільноти" rows="4" required></textarea>
+
+      <div class="radio-group">
+        <label><input type="radio" name="join_mode" value="public" checked> Відкрита для всіх</label>
+        <label><input type="radio" name="join_mode" value="invite_only"> Тільки за посиланням</label>
+      </div>
+
+      <button type="submit">Створити</button>
+    </form>
+  </div>
+</body>
+</html>

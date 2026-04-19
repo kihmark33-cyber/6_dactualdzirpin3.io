@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Пошук{% endblock %}
+{% block content %}
+<h2 class="page-title">Результати пошуку для "{{ query }}"</h2>
+
+<!-- Пошук -->
+<form method="GET" action="{{ url_for('search') }}" class="search-bar">
+    <input type="text" name="q" placeholder="🔍 Пошук за назвою або хештегом" value="{{ query }}">
+    <button type="submit" class="btn search-btn">Шукати</button>
+</form>
+
+<!-- Результати -->
+<div class="posts-grid">
+{% for post in posts %}
+    <div class="post-card">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-text">{{ post.description }}</p>
+        <small class="post-meta">👤 Автор: {{ post.author_name }}</small><br>
+        <small class="post-meta">💬 {{ post.comments_count }} | 👁 {{ post.views }}</small><br>
+        <span class="tag-badge">
+            <a href="{{ url_for('search', q=post.tag) }}">{{ post.tag }}</a>
+        </span>
+        <div class="post-actions">
+            <a href="{{ url_for('post_detail', id=post.id) }}" class="btn detail-btn">Детальніше</a>
+            <form action="{{ url_for('add_to_favorite', post_id=post.id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn fav-btn">⭐ У Favorite</button>
+            </form>
+        </div>
+    </div>
+{% else %}
+    <p class="no-posts">Нічого не знайдено.</p>
+{% endfor %}
+</div>
+{% endblock %}

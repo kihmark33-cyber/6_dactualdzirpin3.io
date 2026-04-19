@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} | PeopleTalks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">PeopleTalks</div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">Головна</a>
+                <a href="{{ url_for('favorite') }}">Улюблені</a>
+                <a href="{{ url_for('top_posts') }}">Топ пости</a>
+                <a href="{{ url_for('my_posts') }}">Мої пости</a>
+
+                <a href="{{ url_for('create_post') }}">Cтворити пост</a>
+                {% if session.get('user_name') %}
+                    <span class="user">👤 {{ session['user_name'] }}</span>
+                    <a href="{{ url_for('logout') }}">Вийти</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Увійти</a>
+                    <a href="{{ url_for('register') }}">Реєстрація</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2026 PeopleTalks. Всі права захищені.</p>
+    </footer>
+</body>
+</html>

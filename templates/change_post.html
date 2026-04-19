@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Редагувати пост{% endblock %}
+{% block content %}
+<h2>Редагувати пост</h2>
+<form method="POST">
+    <label>Заголовок:</label>
+    <input type="text" name="title" value="{{ post.title }}" required>
+
+    <label>Опис:</label>
+    <textarea name="description" required>{{ post.description }}</textarea>
+
+    <label>Хештег:</label>
+    <input type="text" name="tag" value="{{ post.tag }}" readonly>
+
+    <button type="submit">Оновити</button>
+</form>
+{% endblock %}

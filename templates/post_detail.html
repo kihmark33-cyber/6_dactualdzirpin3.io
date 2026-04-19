@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<div class="post">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.description }}</p>
+    <small>Автор: {{ post.author_name }}</small><br>
+    <small>👀 Перегляди: {{ post.views }} | 💬 Коментарі: {{ post.comments_count }}</small>
+</div>
+
+<h3>Коментарі</h3>
+{% for comment in comments %}
+    <div class="comment">
+        <p>{{ comment.text }}</p>
+    </div>
+{% else %}
+    <p>Поки що немає коментарів. Будь першим!</p>
+{% endfor %}
+
+<h3>Написати коментар</h3>
+<form method="POST">
+    <textarea name="comment" required></textarea><br>
+    <button type="submit">Додати коментар</button>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+\{% extends "base.html" %}
+{% block title %}Найобговорюваніші пости{% endblock %}
+{% block content %}
+<h2>🔥 Найобговорюваніші пости</h2>
+{% for post in posts %}
+    <div class="post">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <small>Автор: {{ post.author_name }}</small><br>
+        <small>💬 Коментарі: {{ post.comments_count }} | 👀 Перегляди: {{ post.views }}</small>
+    </div>
+{% else %}
+    <p>Поки що немає популярних постів.</p>
+{% endfor %}
+{% endblock %}

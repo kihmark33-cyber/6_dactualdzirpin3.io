@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Мої улюблені пости{% endblock %}
+{% block content %}
+<h2>⭐ Мої улюблені пости</h2>
+{% for post in posts %}
+    <div class="post">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <a href="{{ url_for('post_detail', id=post.id) }}" class="btn">Детальніше</a>
+        <form action="{{ url_for('remove_from_favorite', post_id=post.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn">❌ Видалити</button>
+        </form>
+    </div>
+{% else %}
+    <p>У вас ще немає улюблених постів.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Створити пост</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .post-card {
+            background: #1e1e2e;
+            border-radius: 20px;
+            padding: 40px 35px;
+            max-width: 720px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 112, 67, 0.15);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .post-title {
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #ff7043;
+            letter-spacing: -0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #bbbbbb;
+            font-size: 1.02rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: #2a2a3a;
+            border: 2px solid #3a3a4a;
+            border-radius: 12px;
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff7043;
+            box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.2);
+            background: #32324a;
+        }
+
+        textarea {
+            min-height: 180px;
+            resize: vertical;
+            font-family: inherit;
+            line-height: 1.6;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff7043, #ff5722);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 8px 20px rgba(255, 112, 67, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 112, 67, 0.4);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* Покращення для маленьких екранів */
+        @media (max-width: 480px) {
+            .post-card {
+                padding: 30px 20px;
+            }
+            .post-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="post-card">
+        <div class="header">
+            <span style="font-size: 2.4rem;">📝</span>
+            <h1 class="post-title">Створити пост</h1>
+        </div>
+
+        <form method="POST" action="{{ url_for('create_post') }}">
+            <div class="form-group">
+                <label for="title">Заголовок</label>
+                <input type="text" id="title" name="title" required
+                       placeholder="Напишіть привабливий заголовок...">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Опис</label>
+                <textarea id="description" name="description" required
+                          placeholder="Розкажіть детальніше про свій пост..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tag">Тег (необов’язково)</label>
+                <input type="text" id="tag" name="tag"
+                       placeholder="Наприклад: #програмування, #життя, #мотивація">
+            </div>
+
+            <button type="submit">🚀 Опублікувати пост</button>
+        </form>
+    </div>
+</body>
+</html>

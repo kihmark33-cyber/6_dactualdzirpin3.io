@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Оплата{% endblock %}
+{% block content %}
+<div class="payment-card">
+    <h2>Оплата за публікацію</h2>
+    <p>Вартість: <strong>50 грн</strong></p>
+    <form method="POST">
+        <button type="submit" class="btn">💳 Оплатити через LiquidPay</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Мої пости{% endblock %}
+{% block content %}
+<h2>Мої пости</h2>
+{% for post in posts %}
+    <div class="post">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <small>👀 Перегляди: {{ post.views }} | 💬 Коментарі: {{ post.comments_count }}</small><br>
+        <a href="{{ url_for('update_post', id=post.id) }}" class="btn">Редагувати</a>
+        <a href="{{ url_for('delete_post', id=post.id) }}" class="btn">Видалити</a>
+    </div>
+{% else %}
+    <p>У вас ще немає постів.</p>
+{% endfor %}
+{% endblock %}
